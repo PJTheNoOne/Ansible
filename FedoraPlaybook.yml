@@ -1,0 +1,6 @@
+---
+- name: Fedora Playbook
+  hosts: personal
+  roles:
+    # - FedoraSystem
+    - Appimages

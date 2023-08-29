@@ -6,23 +6,28 @@
   register: ostree_status
   failed_when: ostree_status.rc == "999"  # Don't fail, regardless of return code
 
-# - name: Cancel a current rpm-ostree update when an update is currently running.
-#   ansible.builtin.command: rpm-ostree cancel
-#   when: ostree_status.rc != 1
+- name: Cancel a current rpm-ostree update when an update is currently running.
+  ansible.builtin.command: rpm-ostree cancel
+  when: ostree_status.rc != 1
 
-# - name: Install Apps
-#   community.general.rpm_ostree_pkg:
-#     name: "{{ item }}"
-#     state: present
-#     # apply_live: true  # This feature is not yet available
-#   become: yes
-#   become_method: sudo
-#   loop: "{{ layer_pkgs }}"
+- name: Install Apps
+  community.general.rpm_ostree_pkg:
+    name: "{{ item }}"
+    state: present
+    # apply_live: true  # This feature is not yet available
+  become: yes
+  become_method: sudo
+  loop: "{{ layer_pkgs }}"
+  when: to_system
 
-#   - name: Remove Apps
-#   community.general.rpm_ostree_pkg:
-#     name: "{{ item }}"
-#     state: absent
+- name: Remove Apps
+  community.general.rpm_ostree_pkg:
+    name: "{{ item }}"
+    state: absent
+  become: yes
+  become_method: sudo
+  loop: "{{ base_pkgs_to_rm }}"
+  when: to_system
 
 - debug:
     msg: "A reboot is required to complete installation / removal of these packages"
