@@ -3,6 +3,19 @@ personal:
   hosts:
     192.168.0.227
   vars:
+    ### FlatPacks ###
+    flatpack_repos:
+    - label: 'flathub'
+      url: 'roles/Appimages/defaults roles/Appimages/defaults/main.yml roles/Appimages/files roles/Appimages/handlers roles/Appimages/handlers/main.yml roles/Appimages/meta roles/Appimages/meta/main.yml roles/Appimages/tasks roles/Appimages/tasks/main.yml roles/Appimages/templates roles/Appimages/tests roles/Appimages/tests/inventory roles/Appimages/tests/main.yml roles/Appimages/vars roles/Appimages/vars/main.yml'
+
+    flatpacks_to_install:
+    - repo: 'flathub'
+      pkg: 'md.obsidian.Obsidian'
+    - repo: 'flathub'
+      pkg: 'com.discordapp.Discord'
+    - repo: 'flathub'
+      pkg: 'io.github.shiftey.Desktop'
+    
     to_system: false
     layer_pkgs:
       - git

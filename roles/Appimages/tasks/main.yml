@@ -15,8 +15,9 @@
     method: GET
     owner: pj
     group: pj
+    mode: u=rwx,g=r,o=r
     force: true
-    status_code: [304]
+    status_code: [200, 304]
   loop: "{{ appimages }}"
   register: downloaded_appimages
   become: true
@@ -28,23 +29,20 @@
     headers:
       User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/117.0
     owner: pj
-    group: pj    
+    group: pj
+    mode: u=rw,g=r,o=r 
     force: true
   loop: "{{ appimages }}"
   become: true
 
-- name: Set execute permissions for AppImages
-  file:
-    path: "{{ appimage_install_dir }}/{{ item.item.name }}.AppImage"
-    mode: 'u+x'
-  loop: "{{ downloaded_appimages.results }}"
-  become: true
-
 - name: Template Desktop Files
   template:
-    src: app_template.desktop.j2
+    src: roles/Appimages/templates/app_template.desktop.j2
     dest: "{{ appimage_install_dir }}/{{ item.item.name }}.desktop"
     owner: pj
     group: pj
     mode: u=rw,g=r,o=r
+  vars:
+    name: "{{ item.item.name }}"
+    image_format: "{{ item.item.image_format }}"
   loop: "{{ downloaded_appimages.results }}"
