@@ -7,7 +7,7 @@
   containers.podman.podman_container:
     name: orca
     image: ubuntu
-    satus: started
+    state: started
 
 - name: Gen locales
   command: >
