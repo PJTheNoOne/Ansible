@@ -1,17 +1,12 @@
 ---
-- name: Create Ubuntu distrobox 
+- name: Create orca Ubuntu distrobox 
   command: >
-    distrobox create -i ubuntu --nvidia
+    distrobox create orca -i ubuntu --nvidia -ap "locales libgstreamer1.0-0 libgtk-3-0 libfontconfig1 fuse webkit2gtk-driver libwebkit2gtk-4.0-37"
 
-- name: Run Ubuntu container
-  containers.podman.podman_container:
-    name: Ubuntu
-    image: ubuntu
-    timezone: en_US 
-    state: started
-
-- name: Install orcaslicer deps
+- name: Gen locales
   command: >
-    podman exec ubuntu apt install libgstvideo-1.0 libgstreamer1.0-0 libgtk-3-0 libfontconfig fuse webkit2gtk-driver libwebkit2gtk-4.0-37 -y
+    podman exec orca update-locale LANG=en_US.UTF-8
+    podman exec orca locale-gen en_US.UTF-8
+
 
 
