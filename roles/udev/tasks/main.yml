@@ -1,0 +1,15 @@
+---
+- name: Copy udev rules file
+  copy:
+    src: roles/udev/files/99-platformio-udev.rules  # Replace with the path to your udev rules file
+    dest: /etc/udev/rules.d/99-your-rules.rules  # Replace with the desired destination path
+    owner: root
+    group: root
+    mode: '0644'
+  register: copy_result
+  become: true
+
+- name: Reload udev rules
+  command: udevadm control --reload-rules && udevadm trigger
+  when: copy_result.changed
+  become: true

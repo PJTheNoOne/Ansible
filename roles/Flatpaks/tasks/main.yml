@@ -5,7 +5,7 @@
     url: "{{ item.url }}"
     state: present
   loop: "{{ flatpack_repos }}"
-  become: yes
+  become: true
 
 - name: Install Discord Flatpak
   flatpak:
@@ -14,4 +14,4 @@
     remote: "{{ item.repo }}"
     method: user
   loop: "{{ flatpacks_to_install }}"
-  become: yes
+  become: true
