@@ -3,6 +3,12 @@
   command: >
     distrobox create orca -i ubuntu --nvidia -ap "locales libgstreamer1.0-0 libgtk-3-0 libfontconfig1 fuse webkit2gtk-driver libwebkit2gtk-4.0-37"
 
+- name: start orca container
+  containers.podman.podman_container:
+    name: orca
+    image: ubuntu
+    satus: started
+
 - name: Gen locales
   command: >
     podman exec orca update-locale LANG=en_US.UTF-8
