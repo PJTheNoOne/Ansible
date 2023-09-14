@@ -38,6 +38,7 @@
     block: "{{ item.block }}"
     owner: root
     group: root
+  become: true
   loop: "{{ layer_custom_repos }}"
 
 - name: Install Apps
