@@ -6,4 +6,4 @@
     - Appimages
     - udev
     - Flatpaks
-    # - distrobox
+    - distrobox
