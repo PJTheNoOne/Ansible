@@ -15,7 +15,13 @@ personal:
       pkg: 'com.discordapp.Discord'
     - repo: 'flathub'
       pkg: 'io.github.shiftey.Desktop'
-    
+    - repo: 'flathub'
+      pkg: 'io.github.betaflight.BetaflightConfigurator'
+    - repo: 'flathub'
+      pkg: 'io.github.shiftey.Desktop'
+    - repo: 'flathub'
+      pkg: 'com.github.tchx84.Flatseal'   
+       
     to_system: false
     layer_pkgs:
       - git
@@ -53,14 +59,28 @@ personal:
           repo_gpgcheck=0
           enabled=1
           enabled_metadata=1
+      - label: tailscale
+        dest: "{{ layer_custom_repo_dest }}tailscale.repo"
+        block: |
+          [tailscale-stable]
+          name=Tailscale stable
+          baseurl=https://pkgs.tailscale.com/stable/fedora/$basearch
+          enabled=1
+          type=rpm
+          repo_gpgcheck=1
+          gpgcheck=0
+          gpgkey=https://pkgs.tailscale.com/stable/fedora/repo.gpg
 
     layer_CR_pkgs:
       - brave-browser
-        # repo: brave-browser-repo
       - asusctl
-        # repo: asus-linux
       - supergfxctl
-        # repo: asus-linux
+      - tailscale
+
+    ### Services ###
+    services_to_enable:
+      - tailscale
+      - supergfxd
 
     ### Appimages ###
     appimage_install_dir: /var/home/pj/.local/share/applications
@@ -71,18 +91,6 @@ personal:
         url: https://desktop.sunsama.com/
         image_url: https://avatars.githubusercontent.com/u/11592020?s=280&v=4
         image_format: png
-
-      # - name: myapp2
-      #   url: https://example.com/path/to/myapp2.AppImage
-      #   desktop_file:
-      #     name: myapp2.desktop
-      #     content: |
-      #       [Desktop Entry]
-      #       Name=My App 2
-      #       Exec=/opt/appimages/myapp2.AppImage
-      #       Icon=myapp2-icon
-      #       Terminal=false
-      #       Type=Application
 
     ### Gnome Settings ###
 

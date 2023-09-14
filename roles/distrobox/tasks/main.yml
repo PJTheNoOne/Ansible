@@ -1,20 +1,16 @@
 ---
-- name: Create orca Ubuntu distrobox 
-  command: >
-    distrobox create orca -i ubuntu --nvidia -ap "locales libgstreamer1.0-0 libgtk-3-0 libfontconfig1 fuse webkit2gtk-driver libwebkit2gtk-4.0-37"
+- name: Copy Distrobox assemble
+  copy:
+    src: roles/distrobox/files/config.ini  # Replace with the path to your udev rules file
+    dest:   # Replace with the desired destination path
+    owner: pj
+    group: pj
+    mode: u=rw,g=r,o=r 
+  register: copy_result
+  become: true
 
-- name: Make sure orca container is running
+- name: Distrobox Assemble!
   command: >
-    distrobox upgrade orca
-  # containers.podman.podman_container:
-  #   name: orca
-  #   image: ubuntu
-  #   state: started
-
-- name: Gen locales
-  command: >
-    podman exec orca locale-gen en_US.UTF-8
-    podman exec orca update-locale LANG=en_US.UTF-8
-
+    distrobox assemble create $HOME/config.ini
 
 

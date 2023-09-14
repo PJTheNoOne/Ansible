@@ -2,7 +2,8 @@
 - name: Fedora Playbook
   hosts: personal
   roles:
-    # - FedoraSystem
-    # - Appimages
-    # - udev
-    - distrobox
+    - FedoraSystem
+    - Appimages
+    - udev
+    - Flatpaks
+    # - distrobox
