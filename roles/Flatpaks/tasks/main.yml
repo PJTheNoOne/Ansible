@@ -1,17 +1,17 @@
 ---
-- name: Add Flatpak repositories
-  flatpak_repository:
-    name: "{{ item.label }}"
-    url: "{{ item.url }}"
-    state: present
-  loop: "{{ flatpack_repos }}"
-  become: true
+# - name: Add Flatpak repositories
+#   flatpak_repository:
+#     name: "{{ item.label }}"
+#     url: "{{ item.url }}"
+#     state: present
+#   loop: "{{ flatpack_repos }}"
+#   become: true
 
 - name: Install Discord Flatpak
   flatpak:
     name: "{{ item.pkg }}"
     state: present
-    remote: "{{ item.repo }}"
+    # remote: "{{ item.repo }}"
     method: user
   loop: "{{ flatpacks_to_install }}"
   become: true
