@@ -15,7 +15,7 @@
     name: "{{ item }}"
     state: present
     # apply_live: true  # This feature is not yet available
-  become: yes
+  become: true
   become_method: sudo
   loop: "{{ layer_pkgs }}"
   when: to_system
@@ -24,10 +24,30 @@
   community.general.rpm_ostree_pkg:
     name: "{{ item }}"
     state: absent
-  become: yes
+  become: true
   become_method: sudo
   loop: "{{ base_pkgs_to_rm }}"
   when: to_system
+
+- name: Custom Package Repos
+  blockinfile:
+    create: true
+    mode: u=rw,g=r,o=r
+    state: present
+    dest: "{{ item.dest }}"
+    block: "{{ item.block }}"
+    owner: root
+    group: root
+  loop: "{{ layer_custom_repos }}"
+
+- name: Install Apps
+  community.general.rpm_ostree_pkg:
+    name: "{{ item }}"
+    state: present
+    # apply_live: true  # This feature is not yet available
+  become: true
+  become_method: sudo
+  loop: "{{ layer_CR_pkgs }}"
 
 - debug:
     msg: "A reboot is required to complete installation / removal of these packages"

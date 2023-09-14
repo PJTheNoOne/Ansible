@@ -10,6 +10,7 @@
   become: true
 
 - name: Reload udev rules
-  command: udevadm control --reload-rules && udevadm trigger
+  command: >
+    udevadm control --reload-rules && udevadm trigger
   when: copy_result.changed
   become: true
