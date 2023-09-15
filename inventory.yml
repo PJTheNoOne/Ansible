@@ -18,8 +18,6 @@ personal:
     - repo: 'flathub'
       pkg: 'io.github.betaflight.BetaflightConfigurator'
     - repo: 'flathub'
-      pkg: 'io.github.shiftey.Desktop'
-    - repo: 'flathub'
       pkg: 'com.github.tchx84.Flatseal'
     - repo: 'flathub'
       pkg: 'org.onlyoffice.desktopeditors'   
