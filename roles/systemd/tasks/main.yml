@@ -3,4 +3,4 @@
         name: "{{ item }}"
         enabled: yes
         state: started
-      loop: {{ services_to_enable }}
+      loop: "{{ services_to_enable }}"

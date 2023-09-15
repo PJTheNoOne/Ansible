@@ -2,7 +2,7 @@
 - name: Copy Distrobox assemble
   copy:
     src: roles/distrobox/files/config.ini  # Replace with the path to your udev rules file
-    dest:   # Replace with the desired destination path
+    dest: $HOME/.local/share/containers/config.ini # Replace with the desired destination path
     owner: pj
     group: pj
     mode: u=rw,g=r,o=r 

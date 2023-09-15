@@ -12,7 +12,7 @@ personal:
     - repo: 'flathub'
       pkg: 'md.obsidian.Obsidian'
     - repo: 'flathub'
-      pkg: 'com.discordapp.Discord'
+      pkg: 'de.shorsh.discord-screenaudio'
     - repo: 'flathub'
       pkg: 'io.github.shiftey.Desktop'
     - repo: 'flathub'
@@ -20,7 +20,13 @@ personal:
     - repo: 'flathub'
       pkg: 'io.github.shiftey.Desktop'
     - repo: 'flathub'
-      pkg: 'com.github.tchx84.Flatseal'   
+      pkg: 'com.github.tchx84.Flatseal'
+    - repo: 'flathub'
+      pkg: 'org.onlyoffice.desktopeditors'   
+    - repo: 'flathub'
+      pkg: 'org.prismlauncher.PrismLauncher'
+    - repo: 'flathub'
+      pkg: 'io.github.nokse22.asciidraw'
        
     to_system: false
     layer_pkgs:
