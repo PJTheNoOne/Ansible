@@ -12,6 +12,6 @@
 
 - name: Distrobox Assemble!
   command: >
-    distrobox assemble create $HOME/config.ini
+    distrobox assemble create $HOME/.local/share/containers/config.ini
 
 
